@@ -24,15 +24,15 @@ import groovy.json.JsonOutput
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
-import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.bundling.Jar
+import org.gradle.kotlin.dsl.getByType
 import java.io.File
 import java.lang.IllegalStateException
 
 /**
  * Gradle plugin to support spinnaker service plugin bundling aspects.
  *
- * TODO(rz): Add spinnaker bintray to repositories
  * TODO(rz): Configure plugin manifest
  * TODO(rz): Auto-add `annotationProcessor "org.pf4j:pf4j:3.2.0"`
  */
@@ -79,7 +79,7 @@ class SpinnakerServiceExtensionPlugin : Plugin<Project> {
   }
 
   private fun createPluginRef(project: Project, pluginExtensionName: String?, manifestLocation: String) {
-    val sourceSets = project.convention.getPlugin(JavaPluginConvention::class.java).sourceSets
+    val sourceSets = project.extensions.getByType<JavaPluginExtension>().sourceSets
 
     val classesDirs: List<String>  = sourceSets.getByName("main").runtimeClasspath.files
       .filter { !it.absolutePath.endsWith(".jar") }
