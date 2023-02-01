@@ -67,7 +67,7 @@ class SpinnakerExtensionGradlePluginFunctionalTest {
     TestPlugin.Builder()
       .withRootDir(TEST_ROOT)
       .withService("orca")
-      .withCompatibilityTestVersion("1.22.0")
+      .withCompatibilityTestVersion("1.28.0")
       .build()
 
     val build = GradleRunner
@@ -91,8 +91,8 @@ class SpinnakerExtensionGradlePluginFunctionalTest {
                 {
                     "service": "orca",
                     "result": "SUCCESS",
-                    "platformVersion": "1.22.0",
-                    "serviceVersion": "2.16.0-20200817170018"
+                    "platformVersion": "1.28.0",
+                    "serviceVersion": "8.24.2"
                 }
             ]
       """
@@ -107,7 +107,7 @@ class SpinnakerExtensionGradlePluginFunctionalTest {
     TestPlugin.Builder()
       .withRootDir(TEST_ROOT)
       .withService("orca")
-      .withCompatibilityTestVersion("1.22.0")
+      .withCompatibilityTestVersion("1.28.0")
       .withTest("MyFailingTest.kt", """
         package {{ package }}
 
@@ -139,7 +139,7 @@ class SpinnakerExtensionGradlePluginFunctionalTest {
   fun `compatibility test task succeeds if failing test is not required`() {
     TestPlugin.Builder()
       .withService("orca")
-      .withCompatibilityTestVersion("1.22.0")
+      .withCompatibilityTestVersion("1.28.0")
       .withRootBuildGradle("""
         plugins {
           id("io.spinnaker.plugin.bundler")
@@ -191,8 +191,8 @@ class SpinnakerExtensionGradlePluginFunctionalTest {
                 {
                     "service": "orca",
                     "result": "FAILURE",
-                    "platformVersion": "1.22.0",
-                    "serviceVersion": "2.16.0-20200817170018"
+                    "platformVersion": "1.28.0",
+                    "serviceVersion": "8.24.2"
                 }
             ]
       """
